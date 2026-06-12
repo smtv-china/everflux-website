@@ -88,10 +88,11 @@ export default function ContentLibrary() {
               <div className="relative aspect-video bg-[linear-gradient(135deg,#10231e,#20362f_46%,#0b1517)]">
                 {youtubeId ? (
                   <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
+                    src={`https://www.youtube.com/embed/${youtubeId}?rel=0`}
                     title={item.title}
                     className="h-full w-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
                   />
                 ) : isVideo(item) ? (
