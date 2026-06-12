@@ -42,19 +42,28 @@ async function readJsonFile<T>(filePath: string): Promise<T[] | null> {
 export async function readJsonList<T>(fileName: string): Promise<T[]> {
   const writablePath = path.join(writableDataDir, fileName);
   const writableList = await readJsonFile<T>(writablePath);
+  const bundledPath = path.join(bundledDataDir, fileName);
+  const bundledList = bundledPath !== writablePath ? await readJsonFile<T>(bundledPath) : null;
+
+  if (writableList && bundledList) {
+    const ids = new Set(
+      writableList
+        .map((item) => (typeof item === "object" && item && "id" in item ? item.id : null))
+        .filter(Boolean),
+    );
+    const missingBundledItems = bundledList.filter(
+      (item) => !(typeof item === "object" && item && "id" in item && ids.has(item.id)),
+    );
+
+    return [...writableList, ...missingBundledItems];
+  }
 
   if (writableList) {
     return writableList;
   }
 
-  const bundledPath = path.join(bundledDataDir, fileName);
-
-  if (bundledPath !== writablePath) {
-    const bundledList = await readJsonFile<T>(bundledPath);
-
-    if (bundledList) {
-      return bundledList;
-    }
+  if (bundledList) {
+    return bundledList;
   }
 
   return [];
