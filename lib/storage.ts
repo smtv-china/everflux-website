@@ -47,15 +47,15 @@ export async function readJsonList<T>(fileName: string): Promise<T[]> {
 
   if (writableList && bundledList) {
     const ids = new Set(
-      writableList
+      bundledList
         .map((item) => (typeof item === "object" && item && "id" in item ? item.id : null))
         .filter(Boolean),
     );
-    const missingBundledItems = bundledList.filter(
+    const runtimeOnlyItems = writableList.filter(
       (item) => !(typeof item === "object" && item && "id" in item && ids.has(item.id)),
     );
 
-    return [...writableList, ...missingBundledItems];
+    return [...bundledList, ...runtimeOnlyItems];
   }
 
   if (writableList) {
