@@ -20,9 +20,15 @@
 # production
 /build
 
+# website runtime data
+/data/
+/public/uploads/*
+!/public/uploads/.gitkeep
+
 # misc
 .DS_Store
 *.pem
+*.bak
 
 # debug
 npm-debug.log*
