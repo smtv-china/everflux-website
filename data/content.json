@@ -1,5 +1,13 @@
 [
   {
+    "id": "demo-video-youtube-xdz2yo-smnk",
+    "title": "YouTube Energy Video / YouTube能源视频",
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=xdz2Yo_Smnk",
+    "description": "Embedded YouTube video link added for playback testing without downloading the original video file.",
+    "createdAt": "2026-06-12T15:50:00.000Z"
+  },
+  {
     "id": "demo-video-ai-dispatch",
     "title": "AI Energy Dispatch Demo / AI能源调度演示",
     "type": "video",

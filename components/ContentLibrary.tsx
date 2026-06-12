@@ -20,6 +20,24 @@ function isVideo(item: ContentItem) {
   return item.type === "video" || /\.(mp4|webm|mov)(\?.*)?$/i.test(item.url);
 }
 
+function getYouTubeId(url: string) {
+  try {
+    const parsed = new URL(url);
+
+    if (parsed.hostname.includes("youtu.be")) {
+      return parsed.pathname.split("/").filter(Boolean)[0] || null;
+    }
+
+    if (parsed.hostname.includes("youtube.com")) {
+      return parsed.searchParams.get("v");
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
 function isImage(item: ContentItem) {
   return item.type === "image" || /\.(jpg|jpeg|png|webp|gif)(\?.*)?$/i.test(item.url);
 }
@@ -62,16 +80,21 @@ export default function ContentLibrary() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {visibleItems.map((item) => (
-          <article key={item.id} className="overflow-hidden border border-white/10 bg-white/[0.035]">
-            <a
-              href={item.url}
-              target={isLocalMedia(item.url) ? "_self" : "_blank"}
-              rel="noreferrer"
-              className="block"
-            >
+        {visibleItems.map((item) => {
+          const youtubeId = getYouTubeId(item.url);
+
+          return (
+            <article key={item.id} className="overflow-hidden border border-white/10 bg-white/[0.035]">
               <div className="relative aspect-video bg-[linear-gradient(135deg,#10231e,#20362f_46%,#0b1517)]">
-                {isVideo(item) ? (
+                {youtubeId ? (
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
+                    title={item.title}
+                    className="h-full w-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : isVideo(item) ? (
                   <video
                     src={item.url}
                     className="h-full w-full object-cover"
@@ -103,10 +126,18 @@ export default function ContentLibrary() {
                     {item.description}
                   </p>
                 ) : null}
+                <a
+                  href={item.url}
+                  target={isLocalMedia(item.url) ? "_self" : "_blank"}
+                  rel="noreferrer"
+                  className="mt-4 inline-flex text-sm font-bold text-[#ff9d1c] transition hover:text-white"
+                >
+                  {text("Open source link", "打开原始链接")}
+                </a>
               </div>
-            </a>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </section>
   );
