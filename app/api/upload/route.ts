@@ -19,6 +19,16 @@ function safeName(name: string) {
 }
 
 export async function POST(request: Request) {
+  if (process.env.NETLIFY) {
+    return NextResponse.json(
+      {
+        error:
+          "File upload needs object storage in production. Local uploads work in development; use Aliyun OSS, Netlify Blobs, or S3 for the live site.",
+      },
+      { status: 501 },
+    );
+  }
+
   const formData = await request.formData();
   const file = formData.get("file");
 
