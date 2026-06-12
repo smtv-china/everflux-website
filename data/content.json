@@ -1,0 +1,50 @@
+[
+  {
+    "id": "demo-video-ai-dispatch",
+    "title": "AI Energy Dispatch Demo / AI能源调度演示",
+    "type": "video",
+    "url": "/uploads/demo-ai-dispatch.mp4",
+    "description": "A short local demo video for testing upload, preview, and playback behavior in the Everflux media library.",
+    "createdAt": "2026-06-12T15:30:00.000Z"
+  },
+  {
+    "id": "demo-image-bess-site",
+    "title": "Grid Battery Storage Site / 电网级储能电站",
+    "type": "image",
+    "url": "/uploads/demo-bess-site.jpg",
+    "description": "Utility-scale battery energy storage project image used as a demo asset for project case presentation.",
+    "createdAt": "2026-06-12T15:29:00.000Z"
+  },
+  {
+    "id": "demo-image-solar-rooftop",
+    "title": "Solar Rooftop Generation / 屋顶光伏发电",
+    "type": "image",
+    "url": "/uploads/demo-solar-rooftop.jpg",
+    "description": "Rooftop solar array image for demonstrating distributed energy content on the company website.",
+    "createdAt": "2026-06-12T15:28:00.000Z"
+  },
+  {
+    "id": "demo-image-storage-racks",
+    "title": "Battery Rack Interior / 储能电池柜内部",
+    "type": "image",
+    "url": "/uploads/demo-storage-racks.jpg",
+    "description": "Battery rack interior image for testing technical gallery and case library display.",
+    "createdAt": "2026-06-12T15:27:00.000Z"
+  },
+  {
+    "id": "demo-case-tehachapi",
+    "title": "Tehachapi Energy Storage Project / Tehachapi储能案例",
+    "type": "case",
+    "url": "https://en.wikipedia.org/wiki/Tehachapi_Energy_Storage_Project",
+    "description": "External case link for testing how project references open from the website content library.",
+    "createdAt": "2026-06-12T15:26:00.000Z"
+  },
+  {
+    "id": "demo-news-bess",
+    "title": "Battery Energy Storage System Reference / 储能系统资料",
+    "type": "news",
+    "url": "https://en.wikipedia.org/wiki/Battery_energy_storage_system",
+    "description": "Reference link for battery energy storage terminology and global market background.",
+    "createdAt": "2026-06-12T15:25:00.000Z"
+  }
+]

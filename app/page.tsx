@@ -7,6 +7,7 @@ import GlobalMap from "../components/GlobalMap";
 import Team from "../components/Team";
 import NewsCenter from "../components/NewsCenter";
 import VideoCenter from "../components/VideoCenter";
+import ContentLibrary from "../components/ContentLibrary";
 import Investment from "../components/Investment";
 import Partners from "../components/Partners";
 import DownloadCenter from "../components/DownloadCenter";
@@ -27,6 +28,7 @@ export default function Home() {
           <Team />
           <NewsCenter />
           <VideoCenter />
+          <ContentLibrary />
           <Investment />
           <Partners />
           <DownloadCenter />

@@ -11,6 +11,7 @@ const navItems = [
   { label: "Network", cn: "全球布局", href: "#global" },
   { label: "Team", cn: "技术团队", href: "#team" },
   { label: "News", cn: "新闻中心", href: "#news" },
+  { label: "Media", cn: "媒体案例", href: "#library" },
   { label: "Contact", cn: "联系我们", href: "#contact" },
 ];
 
