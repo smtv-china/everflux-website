@@ -13,7 +13,7 @@ function AdminLoginForm() {
 
   useEffect(() => {
     async function loadStatus() {
-      const response = await fetch("/api/admin/status", { cache: "no-store" });
+      const response = await fetch(`/api/admin/status?t=${Date.now()}`, { cache: "no-store" });
       const data = await response.json();
       setAuthMode(data.enabled ? "protected" : "open-demo");
 

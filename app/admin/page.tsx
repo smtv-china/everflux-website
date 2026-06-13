@@ -141,7 +141,7 @@ export default function AdminPage() {
 
   const loadSystemStatus = useCallback(async function loadSystemStatus() {
     const [securityRes, healthRes] = await Promise.all([
-      fetch("/api/admin/status", { cache: "no-store" }),
+      fetch(`/api/admin/status?t=${Date.now()}`, { cache: "no-store" }),
       fetch("/api/health", { cache: "no-store" }),
     ]);
     const securityData = await securityRes.json().catch(() => null);
