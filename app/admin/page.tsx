@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 
 type Inquiry = {
   id: string;
@@ -26,6 +26,19 @@ type ContentItem = {
 };
 
 type ActiveView = "overview" | "content" | "inquiries" | "publish" | "operations";
+
+type AdminSecurityStatus = {
+  enabled: boolean;
+  authenticated: boolean;
+  mode: "protected" | "open-demo";
+};
+
+type HealthStatus = {
+  ok: boolean;
+  service?: string;
+  domain?: string;
+  time?: string;
+};
 
 const typeLabels: Record<Exclude<ContentType, "all">, string> = {
   image: "Image / 图片",
@@ -108,8 +121,10 @@ export default function AdminPage() {
   const [selectedId, setSelectedId] = useState("");
   const [editingId, setEditingId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [securityStatus, setSecurityStatus] = useState<AdminSecurityStatus | null>(null);
+  const [healthStatus, setHealthStatus] = useState<HealthStatus | null>(null);
 
-  async function loadData() {
+  const loadData = useCallback(async function loadData() {
     setIsLoading(true);
     const [inquiryRes, contentRes] = await Promise.all([
       fetch("/api/inquiries", { cache: "no-store" }),
@@ -122,15 +137,36 @@ export default function AdminPage() {
     setItems(nextItems);
     setSelectedId((current) => current || nextItems[0]?.id || "");
     setIsLoading(false);
-  }
+  }, []);
+
+  const loadSystemStatus = useCallback(async function loadSystemStatus() {
+    const [securityRes, healthRes] = await Promise.all([
+      fetch("/api/admin/status", { cache: "no-store" }),
+      fetch("/api/health", { cache: "no-store" }),
+    ]);
+    const securityData = await securityRes.json().catch(() => null);
+    const healthData = await healthRes.json().catch(() => null);
+
+    if (securityData) {
+      setSecurityStatus(securityData);
+    }
+
+    if (healthData) {
+      setHealthStatus(healthData);
+    }
+  }, []);
+
+  const refreshAll = useCallback(async function refreshAll() {
+    await Promise.all([loadData(), loadSystemStatus()]);
+  }, [loadData, loadSystemStatus]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      void loadData();
+      void refreshAll();
     }, 0);
 
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [refreshAll]);
 
   const selectedItem = useMemo(
     () => items.find((item) => item.id === selectedId) || items[0],
@@ -254,6 +290,11 @@ export default function AdminPage() {
     }
   }
 
+  async function logout() {
+    await fetch("/api/admin/logout", { method: "POST" });
+    window.location.href = "/admin/login";
+  }
+
   function exportContent() {
     downloadCsv(
       "everflux-content.csv",
@@ -303,11 +344,20 @@ export default function AdminPage() {
           <div className="flex flex-wrap gap-2 text-sm">
             <button
               type="button"
-              onClick={() => void loadData()}
+              onClick={() => void refreshAll()}
               className="border border-white/10 px-4 py-2 font-bold text-white/70 transition hover:border-[#92e6d1] hover:text-[#92e6d1]"
             >
               Refresh / 刷新
             </button>
+            {securityStatus?.enabled ? (
+              <button
+                type="button"
+                onClick={() => void logout()}
+                className="border border-white/10 px-4 py-2 font-bold text-white/70 transition hover:border-[#ff9d1c] hover:text-[#ff9d1c]"
+              >
+                Logout / 退出
+              </button>
+            ) : null}
             <Link
               href="/#library"
               className="border border-[#ff9d1c]/40 px-4 py-2 font-bold text-[#ff9d1c] transition hover:bg-[#ff9d1c] hover:text-[#07110f]"
@@ -337,6 +387,21 @@ export default function AdminPage() {
             ))}
           </nav>
           <div className="mt-4 border border-white/10 bg-black/20 p-4 text-xs leading-6 text-white/52">
+            <p className="font-bold text-[#92e6d1]">Security / 安全状态</p>
+            <p className="mt-2">
+              {securityStatus?.enabled
+                ? "Protected mode is active. 后台登录保护已启用。"
+                : "Open demo mode. Set ADMIN_PASSWORD before promotion. 当前为开放演示模式，推广前请设置 ADMIN_PASSWORD。"}
+            </p>
+          </div>
+          <div className="mt-3 border border-white/10 bg-black/20 p-4 text-xs leading-6 text-white/52">
+            <p className="font-bold text-[#92e6d1]">Health / 健康检查</p>
+            <p className="mt-2">
+              {healthStatus?.ok ? "Online / 正常在线" : "Checking / 检查中"}
+            </p>
+            <p className="break-all text-white/35">{healthStatus?.time || ""}</p>
+          </div>
+          <div className="mt-3 border border-white/10 bg-black/20 p-4 text-xs leading-6 text-white/52">
             <p className="font-bold text-[#92e6d1]">Production note</p>
             <p className="mt-2">
               Netlify live upload storage is temporary. Use Alibaba Cloud OSS before promotion.
@@ -743,7 +808,16 @@ export default function AdminPage() {
                     <p>Deployment: Netlify</p>
                     <p>Domain: Alibaba Cloud DNS</p>
                     <p>Storage: JSON demo data plus temporary runtime data</p>
-                    <p>Recommended next step: Alibaba Cloud OSS + real admin authentication</p>
+                    <p>
+                      Admin auth:{" "}
+                      {securityStatus?.enabled
+                        ? "Protected with ADMIN_PASSWORD"
+                        : "Open demo mode, set ADMIN_PASSWORD"}
+                    </p>
+                    <p>
+                      Health: {healthStatus?.ok ? "OK" : "Unknown"} {healthStatus?.time || ""}
+                    </p>
+                    <p>Recommended next step: Alibaba Cloud OSS + set Netlify env variables</p>
                   </div>
                 </div>
               </div>

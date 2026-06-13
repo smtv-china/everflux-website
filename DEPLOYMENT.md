@@ -118,6 +118,16 @@ Important production note:
 - For serious production, move uploads to Alibaba Cloud OSS and data to MySQL, PostgreSQL, or Supabase.
 - Add admin authentication before public promotion.
 
+Admin password protection is now available. In Netlify environment variables, set:
+
+```text
+ADMIN_PASSWORD=your-strong-password
+ADMIN_SESSION_SECRET=your-long-random-session-secret
+```
+
+If `ADMIN_PASSWORD` is not set, the admin remains in open demo mode so you are not locked out.
+See `ADMIN_SECURITY.md` for details.
+
 ## SEO checklist
 
 - Keep page title and description aligned with "Everflux 永流储能发电机".
