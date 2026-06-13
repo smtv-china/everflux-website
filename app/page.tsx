@@ -2,6 +2,7 @@
 
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import IndustrySolutions from "../components/IndustrySolutions";
 import EnergyBroadcast from "../components/EnergyBroadcast";
 import EnergyStats from "../components/EnergyStats";
 import GlobalMap from "../components/GlobalMap";
@@ -24,6 +25,7 @@ export default function Home() {
 
         <main className="flex-grow">
           <Hero />
+          <IndustrySolutions />
           <EnergyBroadcast />
           <EnergyStats />
           <GlobalMap />

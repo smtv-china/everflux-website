@@ -22,11 +22,11 @@ export default function Navbar() {
 
   return (
     <header className="fixed left-0 top-0 z-50 w-full">
-      <div className="mx-auto max-w-[1228px] px-4 pt-4">
-        <div className="border border-white/10 bg-[#07110f]/82 px-4 py-3 shadow-2xl shadow-black/20 backdrop-blur-xl md:px-6">
-          <div className="flex items-center justify-between gap-4">
-            <a href="#home" className="flex items-center gap-3" aria-label="EVERFLUX home">
-              <span className="relative size-11 overflow-hidden border border-[#f59d22]/50 bg-black">
+      <div className="mx-auto max-w-[1228px] px-3 pt-3 md:px-4 md:pt-4">
+        <div className="border border-white/10 bg-[#07110f]/82 px-3 py-2.5 shadow-2xl shadow-black/20 backdrop-blur-xl md:px-6 md:py-3">
+          <div className="flex items-center justify-between gap-2 md:gap-4">
+            <a href="#home" className="flex min-w-0 items-center gap-2 md:gap-3" aria-label="EVERFLUX home">
+              <span className="relative size-10 shrink-0 overflow-hidden border border-[#f59d22]/50 bg-black md:size-11">
                 <Image
                   src="/brand/everflux-logo.jpg"
                   alt="Everflux logo"
@@ -36,9 +36,11 @@ export default function Navbar() {
                   priority
                 />
               </span>
-              <span>
-                <span className="block text-base font-bold text-[#ff9d1c]">Everflux</span>
-                <span className="block text-[11px] uppercase tracking-[0.2em] text-white/45">
+              <span className="min-w-0">
+                <span className="block truncate text-sm font-bold text-[#ff9d1c] md:text-base">
+                  Everflux
+                </span>
+                <span className="hidden text-[11px] uppercase tracking-[0.2em] text-white/45 sm:block">
                   {text("Storage Power Systems", "永流储能发电机")}
                 </span>
               </span>
@@ -58,18 +60,18 @@ export default function Navbar() {
               </a>
             </nav>
 
-            <div className="flex border border-white/10 p-1 text-xs font-bold">
+            <div className="flex shrink-0 border border-white/10 p-1 text-xs font-bold">
               <button
                 type="button"
                 onClick={() => setLanguage("en")}
-                className={`px-3 py-2 ${language === "en" ? "bg-[#ff9d1c] text-[#07110f]" : "text-white/55"}`}
+                className={`px-2.5 py-1.5 md:px-3 md:py-2 ${language === "en" ? "bg-[#ff9d1c] text-[#07110f]" : "text-white/55"}`}
               >
                 EN
               </button>
               <button
                 type="button"
                 onClick={() => setLanguage("zh")}
-                className={`px-3 py-2 ${language === "zh" ? "bg-[#ff9d1c] text-[#07110f]" : "text-white/55"}`}
+                className={`px-2.5 py-1.5 md:px-3 md:py-2 ${language === "zh" ? "bg-[#ff9d1c] text-[#07110f]" : "text-white/55"}`}
               >
                 CN
               </button>
@@ -78,7 +80,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((value) => !value)}
-              className="border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 xl:hidden"
+              className="shrink-0 whitespace-nowrap border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 xl:hidden"
               aria-expanded={open}
               aria-controls="mobile-nav"
             >
