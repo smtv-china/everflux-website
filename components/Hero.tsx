@@ -63,6 +63,14 @@ export default function Hero() {
           <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.96] text-[#ff9d1c] md:text-7xl">
             {text("Powering The Future With Intelligent Energy", "智能能源驱动未来")}
           </h1>
+          <div className="mt-6 max-w-3xl border border-[#ff9d1c]/45 bg-[#ff9d1c]/12 px-5 py-4 shadow-[0_0_34px_rgba(255,157,28,0.14)]">
+            <p className="text-2xl font-black leading-tight text-white md:text-4xl">
+              打造半导体AI智慧能源供应平台
+            </p>
+            <p className="mt-2 text-xs font-bold uppercase tracking-[0.14em] text-[#92e6d1] md:text-sm">
+              Building a Semiconductor AI Smart Energy Supply Platform
+            </p>
+          </div>
           <h2 className="mt-5 max-w-2xl text-2xl font-semibold text-white md:text-3xl">
             {text("Everflux Storage Generator & AI Energy Platform", "永流储能发电机与AI能源平台")}
           </h2>

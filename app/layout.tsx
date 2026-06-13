@@ -15,14 +15,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://evererpower.com"),
   title: {
-    default: "Everflux 永流储能发电机 | Distributed Energy & Storage Power Platform",
+    default: "Everflux 永流 | 半导体AI智慧能源供应平台",
     template: "%s | EVERFLUX",
   },
   description:
-    "Everflux 永流储能发电机 provides distributed energy, energy storage generators, AI dispatching, carbon management, and industrial energy platform solutions.",
+    "Everflux 永流打造半导体AI智慧能源供应平台，提供分布式能源、储能发电机、AI调度、碳管理和产业能源供应解决方案。",
   keywords: [
     "EVERFLUX",
     "Everflux 永流",
+    "半导体AI智慧能源供应平台",
+    "半导体能源供应",
+    "AI智慧能源",
     "永流储能发电机",
     "储能发电机",
     "distributed energy",
@@ -36,9 +39,9 @@ export const metadata: Metadata = {
     canonical: "https://evererpower.com",
   },
   openGraph: {
-    title: "Everflux 永流储能发电机 | Distributed Energy Platform",
+    title: "Everflux 永流 | 半导体AI智慧能源供应平台",
     description:
-      "Distributed energy, storage generator, AI dispatching, and carbon management platform for global industrial energy cooperation.",
+      "Everflux builds a semiconductor AI smart energy supply platform for distributed energy, storage, AI dispatching, and industrial energy cooperation.",
     url: "https://evererpower.com",
     siteName: "EVERFLUX",
     locale: "en_US",
@@ -54,8 +57,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Everflux 永流储能发电机",
-    description: "Distributed energy, storage generator, and AI dispatching platform.",
+    title: "Everflux 永流 | 半导体AI智慧能源供应平台",
+    description: "Semiconductor AI smart energy supply platform for distributed energy and storage.",
     images: ["/brand/everflux-logo.jpg"],
   },
 };
@@ -83,7 +86,7 @@ export default function RootLayout({
               logo: "https://evererpower.com/brand/everflux-logo.jpg",
               sameAs: ["https://www.linkedin.com/company/everflux-energy"],
               description:
-                "Distributed energy, storage generator, AI dispatching, and carbon management platform.",
+                "Semiconductor AI smart energy supply platform integrating distributed energy, storage generator, AI dispatching, and carbon management.",
               contactPoint: {
                 "@type": "ContactPoint",
                 contactType: "business development",
