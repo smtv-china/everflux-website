@@ -7,6 +7,7 @@ import { useLanguage } from "./LanguageProvider";
 
 const navItems = [
   { label: "Home", cn: "首页", href: "#home" },
+  { label: "TV", cn: "能源视频", href: "#tv" },
   { label: "Data", cn: "能源数据", href: "#energy" },
   { label: "Network", cn: "全球布局", href: "#global" },
   { label: "Team", cn: "技术团队", href: "#team" },
@@ -43,7 +44,7 @@ export default function Navbar() {
               </span>
             </a>
 
-            <nav className="hidden items-center gap-5 text-sm text-white/70 lg:flex">
+            <nav className="hidden items-center gap-4 text-xs text-white/70 xl:flex xl:text-sm">
               {navItems.map((item) => (
                 <a key={item.href} href={item.href} className="transition hover:text-[#ff9d1c]">
                   {text(item.label, item.cn)}
@@ -77,7 +78,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((value) => !value)}
-              className="border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 lg:hidden"
+              className="border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 xl:hidden"
               aria-expanded={open}
               aria-controls="mobile-nav"
             >
@@ -86,7 +87,7 @@ export default function Navbar() {
           </div>
 
           {open ? (
-            <nav id="mobile-nav" className="mt-4 grid gap-2 border-t border-white/10 pt-4 lg:hidden">
+            <nav id="mobile-nav" className="mt-4 grid gap-2 border-t border-white/10 pt-4 xl:hidden">
               {navItems.map((item) => (
                 <a
                   key={item.href}
