@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { appendJsonItem, readJsonList, type Inquiry } from "@/lib/storage";
+import { appendJsonItem, readJsonList, writeJsonList, type Inquiry } from "@/lib/storage";
 
 export async function GET() {
   const inquiries = await readJsonList<Inquiry>("inquiries.json");
@@ -29,4 +29,19 @@ export async function POST(request: Request) {
 
   await appendJsonItem<Inquiry>("inquiries.json", inquiry);
   return NextResponse.json({ inquiry }, { status: 201 });
+}
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  if (!id) {
+    return NextResponse.json({ error: "Inquiry id is required." }, { status: 400 });
+  }
+
+  const inquiries = await readJsonList<Inquiry>("inquiries.json");
+  const nextInquiries = inquiries.filter((item) => item.id !== id);
+  await writeJsonList<Inquiry>("inquiries.json", nextInquiries);
+
+  return NextResponse.json({ ok: true });
 }
