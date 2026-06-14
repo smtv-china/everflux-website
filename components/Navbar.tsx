@@ -7,6 +7,7 @@ import { useLanguage } from "./LanguageProvider";
 
 const navItems = [
   { label: "Home", cn: "首页", href: "#home" },
+  { label: "About", cn: "关于永流", href: "#about" },
   { label: "TV", cn: "能源视频", href: "#tv" },
   { label: "Data", cn: "能源数据", href: "#energy" },
   { label: "Network", cn: "全球布局", href: "#global" },

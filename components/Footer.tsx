@@ -3,6 +3,7 @@
 import { useLanguage } from "./LanguageProvider";
 
 const links = [
+  ["About Everflux", "关于永流", "#about"],
   ["Platform", "平台能力", "#energy"],
   ["Global Footprint", "全球布局", "#global"],
   ["Partnership", "招商合作", "#investment"],

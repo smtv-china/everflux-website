@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | EVERFLUX",
   },
   description:
-    "Everflux 永流打造半导体AI智慧能源供应平台，提供分布式能源、储能发电机、AI调度、碳管理和产业能源供应解决方案。",
+    "Everflux 永流是半导体AI智慧能源供应平台，提供分布式能源、储能发电机、AI调度、碳管理和产业能源供应解决方案。",
   keywords: [
     "EVERFLUX",
     "Everflux 永流",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Everflux 永流 | 半导体AI智慧能源供应平台",
     description:
-      "Everflux builds a semiconductor AI smart energy supply platform for distributed energy, storage, AI dispatching, and industrial energy cooperation.",
+      "Everflux is a semiconductor AI smart energy supply platform for distributed energy, storage, AI dispatching, and industrial energy cooperation.",
     url: "https://evererpower.com",
     siteName: "EVERFLUX",
     locale: "en_US",

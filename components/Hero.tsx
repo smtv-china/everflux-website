@@ -61,18 +61,18 @@ export default function Hero() {
           </div>
 
           <p className="eyebrow">
-            {text("Semiconductor Energy Infrastructure", "半导体能源基础设施")}
+            {text("Platform for Semiconductor Energy Supply", "半导体能源供应平台")}
           </p>
           <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] text-[#ff9d1c] md:text-6xl">
             {text(
               "Semiconductor AI Smart Energy Supply Platform",
-              "打造半导体AI智慧能源供应平台",
+              "半导体AI智慧能源供应平台",
             )}
           </h1>
           <h2 className="mt-5 max-w-3xl text-2xl font-semibold leading-tight text-white md:text-3xl">
             {text(
               "AI storage and distributed energy solutions for semiconductor fabs, data centers, and industrial parks.",
-              "面向半导体工厂、数据中心与工业园区的AI储能与分布式能源解决方案。",
+              "面向半导体工厂、数据中心与工业园区的AI储能、稳定供电与分布式能源解决方案。",
             )}
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-8 text-white/66 md:text-lg">
