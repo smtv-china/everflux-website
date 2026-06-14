@@ -1,8 +1,10 @@
 "use client";
 
+import { useMemo } from "react";
+import { useContentData } from "./ContentDataProvider";
+import { fallbackContentItems, isVideoMedia, localizeTitle, sortByNewest } from "./contentMedia";
 import { useLanguage } from "./LanguageProvider";
-
-const liveVideoId = "L_wcLjoJMPc";
+import MediaFrame from "./MediaFrame";
 
 const schedule = [
   {
@@ -132,6 +134,11 @@ function pick(value: { en: string; zh: string }, language: "en" | "zh") {
 
 export default function EnergyBroadcast() {
   const { language, text } = useLanguage();
+  const { items } = useContentData();
+  const featuredVideo = useMemo(() => {
+    const uploadedVideo = sortByNewest(items.filter(isVideoMedia))[0];
+    return uploadedVideo || fallbackContentItems.find((item) => item.id === "fallback-video-micro-hydro") || fallbackContentItems[0];
+  }, [items]);
   const today = new Intl.DateTimeFormat(language === "en" ? "en-US" : "zh-CN", {
     weekday: "long",
     year: "numeric",
@@ -164,16 +171,7 @@ export default function EnergyBroadcast() {
 
         <div className="grid gap-5 lg:grid-cols-[1.18fr_0.82fr]">
           <article className="border border-white/10 bg-black/28">
-            <div className="aspect-video border-b border-white/10 bg-black">
-              <iframe
-                src={`https://www.youtube.com/embed/${liveVideoId}?rel=0`}
-                title={text("Everflux live energy channel", "永流能源视频频道")}
-                className="h-full w-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-            </div>
+            <MediaFrame item={featuredVideo} language={language} className="border-b border-white/10 bg-black" />
             <div className="grid gap-5 p-5 md:grid-cols-[1fr_auto] md:items-end md:p-6">
               <div>
                 <div className="mb-3 flex flex-wrap gap-2 text-[11px] font-bold uppercase tracking-[0.12em]">
@@ -185,13 +183,14 @@ export default function EnergyBroadcast() {
                   </span>
                 </div>
                 <h3 className="text-2xl font-black text-white md:text-3xl">
-                  {text("Rural micro-hydropower generation project", "农村微水力发电项目")}
+                  {localizeTitle(featuredVideo.title, language)}
                 </h3>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-white/58">
-                  {text(
-                    "A practical field case for distributed generation, storage integration, and resilient local power supply.",
-                    "展示分布式发电、储能接入和本地韧性供电的真实项目场景。",
-                  )}
+                  {featuredVideo.description ||
+                    text(
+                      "A practical field case for distributed generation, storage integration, and resilient local power supply.",
+                      "展示分布式发电、储能接入和本地韧性供电的真实项目场景。",
+                    )}
                 </p>
               </div>
               <a

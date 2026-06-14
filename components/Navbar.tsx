@@ -8,6 +8,7 @@ import { useLanguage } from "./LanguageProvider";
 const navItems = [
   { label: "Home", cn: "首页", href: "#home" },
   { label: "About", cn: "关于永流", href: "#about" },
+  { label: "Cases", cn: "案例实证", href: "#cases" },
   { label: "TV", cn: "能源视频", href: "#tv" },
   { label: "Data", cn: "能源数据", href: "#energy" },
   { label: "Network", cn: "全球布局", href: "#global" },
@@ -47,7 +48,7 @@ export default function Navbar() {
               </span>
             </a>
 
-            <nav className="hidden items-center gap-4 text-xs text-white/70 xl:flex xl:text-sm">
+            <nav className="hidden items-center gap-3 text-xs text-white/70 xl:flex">
               {navItems.map((item) => (
                 <a key={item.href} href={item.href} className="transition hover:text-[#ff9d1c]">
                   {text(item.label, item.cn)}

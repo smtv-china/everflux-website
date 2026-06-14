@@ -17,32 +17,37 @@ import DownloadCenter from "../components/DownloadCenter";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import { LanguageProvider } from "../components/LanguageProvider";
+import { ContentDataProvider } from "../components/ContentDataProvider";
+import ProjectEvidence from "../components/ProjectEvidence";
 
 export default function Home() {
   return (
     <LanguageProvider>
-      <div className="flex min-h-screen flex-col bg-[#07110f] text-[#eef6f1]">
-        <Navbar />
+      <ContentDataProvider>
+        <div className="flex min-h-screen flex-col bg-[#07110f] text-[#eef6f1]">
+          <Navbar />
 
-        <main className="flex-grow">
-          <Hero />
-          <AboutUs />
-          <IndustrySolutions />
-          <EnergyBroadcast />
-          <EnergyStats />
-          <GlobalMap />
-          <Team />
-          <NewsCenter />
-          <VideoCenter />
-          <ContentLibrary />
-          <Investment />
-          <Partners />
-          <DownloadCenter />
-          <Contact />
-        </main>
+          <main className="flex-grow">
+            <Hero />
+            <AboutUs />
+            <IndustrySolutions />
+            <ProjectEvidence />
+            <EnergyBroadcast />
+            <EnergyStats />
+            <GlobalMap />
+            <Team />
+            <NewsCenter />
+            <VideoCenter />
+            <ContentLibrary />
+            <Investment />
+            <Partners />
+            <DownloadCenter />
+            <Contact />
+          </main>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </ContentDataProvider>
     </LanguageProvider>
   );
 }
