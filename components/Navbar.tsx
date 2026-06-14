@@ -42,7 +42,7 @@ export default function Navbar() {
                   Everflux
                 </span>
                 <span className="hidden text-[11px] uppercase tracking-[0.2em] text-white/45 sm:block">
-                  {text("Storage Power Systems", "永流储能发电机")}
+                  {text("Semiconductor AI Energy", "半导体AI智慧能源")}
                 </span>
               </span>
             </a>

@@ -39,7 +39,7 @@ export default function Hero() {
       id="home"
       className="relative overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_72%_18%,rgba(146,230,209,0.17),transparent_34%),linear-gradient(135deg,#07110f_0%,#10231e_48%,#0b1517_100%)]"
     >
-      <div className="mx-auto grid min-h-[92vh] max-w-[1180px] items-center gap-10 px-6 pb-14 pt-28 lg:grid-cols-[0.95fr_1.05fr] lg:pt-28">
+      <div className="mx-auto grid min-h-[92vh] max-w-[1180px] items-center gap-10 px-6 pb-14 pt-28 lg:grid-cols-[1.12fr_0.88fr] lg:pt-28">
         <div>
           <div className="mb-6 flex items-center gap-4">
             <div className="relative size-16 overflow-hidden border border-[#ff9d1c]/40 bg-black shadow-[0_0_30px_rgba(255,157,28,0.25)] md:size-20">
@@ -55,15 +55,15 @@ export default function Hero() {
             <div>
               <p className="text-xl font-black text-[#ff9d1c] md:text-2xl">Everflux</p>
               <p className="text-sm tracking-[0.18em] text-white/45">
-                {text("AI Energy Supply Platform", "AI智慧能源供应平台")}
+                {text("Semiconductor AI Energy", "半导体AI智慧能源")}
               </p>
             </div>
           </div>
 
           <p className="eyebrow">
-            {text("Platform for Semiconductor Energy Supply", "半导体能源供应平台")}
+            {text("Platform Overview", "平台总览")}
           </p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] text-[#ff9d1c] md:text-6xl">
+          <h1 className="mt-5 max-w-4xl text-[clamp(2.6rem,4.2vw,3.5rem)] font-black leading-[1.02] text-[#ff9d1c] xl:whitespace-nowrap">
             {text(
               "Semiconductor AI Smart Energy Supply Platform",
               "半导体AI智慧能源供应平台",
